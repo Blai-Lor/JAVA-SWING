@@ -23,10 +23,25 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.UIManager;
 
 public class Main {
 
     public static void main(String[] args) {
+        //Look and feel
+        try {
+            //El estilo es Nimbus
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            //Si no funcionara, Java pondra el estilo que hay por defecto
+            e.printStackTrace();
+        }
+        
         SwingUtilities.invokeLater(() -> {
             //Menu principal
             JFrame menuFrame = new JFrame("POOng! - Menu Principal");
